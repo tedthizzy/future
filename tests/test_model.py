@@ -203,6 +203,22 @@ def test_api_validation_and_exports(tmp_path, monkeypatch, scenario):
     assert client.get("/api/runs/invalid/export?format=csv").status_code == 404
 
 
+def test_registry_version_guard_preserves_runs(tmp_path, monkeypatch, scenario):
+    monkeypatch.setenv("FUTURE_STATE_DIR", str(tmp_path))
+    client = TestClient(app)
+    definitions = client.get("/api/definitions")
+    etag = definitions.headers["etag"]
+    assert etag == f'"{sha(canonical(definitions.json()))}"'
+    accepted = client.post("/api/runs", json=scenario.model_dump(mode="json"), headers={"If-Match": etag})
+    assert accepted.status_code == 200
+    assert accepted.json()["provenance"]["registry_sha256"] == etag.strip('"')
+    original_runs = set((tmp_path / "runs").iterdir())
+    rejected = client.post("/api/runs", json=scenario.model_dump(mode="json"), headers={"If-Match": '"stale-registry"'})
+    assert rejected.status_code == 412
+    assert "Reload the page" in rejected.json()["detail"]
+    assert set((tmp_path / "runs").iterdir()) == original_runs
+
+
 def test_failed_cli_export_does_not_create_an_output(tmp_path):
     output = tmp_path / "invalid.csv"
     result = subprocess.run([sys.executable, "-m", "worldmodel", "export", "invalid",

@@ -22,6 +22,8 @@ uv run python -m worldmodel dev
 
 Open http://127.0.0.1:5173/ and select **Explore starting scenario**. The Python API binds to 127.0.0.1:8000. Changing assumptions calculates and records a new run. Ctrl+C stops the processes started by the dev command. Existing port owners produce an explicit error.
 
+Private phone access uses [Tailscale Serve](ops/hosting.md). On this tailnet, open https://macbook-air-7.taild8ef36.ts.net/. Mobile inputs open from the chart in a compact bottom panel. Touch scrubbing selects a month without changing the simulation. The detached server continues after the agent session. Automatic startup at login remains pending.
+
 The starting scenario is exploratory. It assumes transition onset after two years, a three-year duration, constant real GDP and planned spending, constant other real revenue, full collection at the cap, 5% shared annual inflation, 10% annual Bitcoin purchasing-power growth, and an 80% real asset-price decline. These values demonstrate relationships. They have no assigned probability.
 
 Saved scenarios stay in this browser's local storage. Save each variation under a new name. **Inputs JSON** preserves a portable copy. CSV and Excel export current and compared runs, complete monthly trajectories, units, assumed/generated status, source references, research gaps, and provenance. Fiscal flows are annualized even though the model samples them monthly.
@@ -153,7 +155,7 @@ The final interface should use a small number of clear visualizations. Selecting
 
 CSV and Excel exports should include outcomes with units and time periods. They should also identify the scenario inputs and model version. New evidence initially enters through deliberate review in the coding process. Automated collection can follow later, with review recorded before collected evidence changes an active model.
 
-Hosting remains open. Private credentials and personal account data belong outside the public repository. `.env` and `.env.*` are ignored by Git.
+Public hosting remains open. Private Tailscale hosting is documented in `ops/hosting.md`. Private credentials and personal account data belong outside the public repository. `.env` and `.env.*` are ignored by Git.
 
 ### Visual direction
 

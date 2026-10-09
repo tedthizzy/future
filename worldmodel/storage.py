@@ -21,6 +21,10 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_STATE = Path.home() / ".local/share/future"
 
 
+class RegistryChanged(ValueError):
+    """The caller's evidence no longer matches the definitions used for execution."""
+
+
 def canonical(value) -> bytes:
     return json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode()
 
@@ -38,8 +42,11 @@ def state_dir() -> Path:
     return Path(os.environ.get("FUTURE_STATE_DIR", str(DEFAULT_STATE)))
 
 
-def record_run(scenario: Scenario) -> Run:
+def record_run(scenario: Scenario, expected_registry: str | None = None) -> Run:
     definitions = load_definitions()
+    registry_hash = sha(canonical(definitions.model_dump(mode="json")))
+    if expected_registry is not None and expected_registry != registry_hash:
+        raise RegistryChanged("Model definitions changed. Reload the page before calculating.")
     code_files = sorted((ROOT / "worldmodel").glob("*.py"))
     code_hash = sha(b"".join(p.name.encode() + p.read_bytes() for p in code_files))
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
@@ -49,7 +56,7 @@ def record_run(scenario: Scenario) -> Run:
         scenario=scenario,
         provenance=Provenance(
             code_revision=revision, code_dirty=dirty, code_sha256=code_hash,
-            registry_sha256=sha(canonical(definitions.model_dump(mode="json"))),
+            registry_sha256=registry_hash,
             scenario_sha256=sha(canonical(scenario.model_dump(mode="json"))),
             python_version=platform.python_version(),
             dependencies={k: importlib.metadata.version(k) for k in

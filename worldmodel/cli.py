@@ -37,6 +37,9 @@ def main():
                     parser.error(f"Port {port} is already in use. Stop its owner before starting a new session.")
         if not (ROOT / "apps/web/node_modules").is_dir():
             parser.error("Install frontend dependencies with npm ci --prefix apps/web")
+        def stop(signum, frame):
+            raise KeyboardInterrupt
+        previous_handler = signal.signal(signal.SIGTERM, stop)
         processes = []
         try:
             for command, cwd in [
@@ -58,6 +61,7 @@ def main():
                 if process.poll() is None:
                     os.killpg(process.pid, signal.SIGTERM)
                     process.wait()
+            signal.signal(signal.SIGTERM, previous_handler)
     elif args.command == "run":
         scenario = Scenario.model_validate_json(args.scenario.read_bytes())
         result = record_run(scenario)

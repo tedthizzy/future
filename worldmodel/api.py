@@ -2,23 +2,28 @@
 
 from typing import Literal
 
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, Header, HTTPException
 from fastapi.responses import Response
 
 from .contracts import Definitions, Run, Scenario
-from .storage import export_run, load_definitions, load_run, record_run
+from .storage import RegistryChanged, canonical, export_run, load_definitions, load_run, record_run, sha
 
 app = FastAPI(title="future", version="0.1.0")
 
 
 @app.get("/api/definitions", response_model=Definitions)
-def definitions():
-    return load_definitions()
+def definitions(response: Response):
+    reviewed = load_definitions()
+    response.headers["ETag"] = f'"{sha(canonical(reviewed.model_dump(mode="json")))}"'
+    return reviewed
 
 
 @app.post("/api/runs", response_model=Run)
-def calculate(scenario: Scenario):
-    return record_run(scenario)
+def calculate(scenario: Scenario, if_match: str | None = Header(default=None)):
+    try:
+        return record_run(scenario, if_match.strip('"') if if_match is not None else None)
+    except RegistryChanged as error:
+        raise HTTPException(status_code=412, detail=str(error)) from error
 
 
 @app.get("/api/runs/{run_id}/export")
