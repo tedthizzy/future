@@ -1,0 +1,16 @@
+{
+  "schema_version": "1",
+  "name": "Exploratory starting scenario",
+  "forecast_origin": "2026-10-01",
+  "horizon_months": 120,
+  "exploratory": true,
+  "transition_onset_month": 24,
+  "transition_duration_months": 36,
+  "real_gdp_growth": 0,
+  "real_spending_growth": 0,
+  "other_revenue_growth": 0,
+  "collection_effectiveness": 1,
+  "annual_inflation": 0.05,
+  "bitcoin_real_growth": 0.1,
+  "asset_decline": 0.8
+}

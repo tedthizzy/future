@@ -1,0 +1,890 @@
+{
+  "schema_version": "1",
+  "model_version": "0.1.0",
+  "default_scenario": {
+    "schema_version": "1",
+    "name": "Exploratory starting scenario",
+    "forecast_origin": "2026-10-01",
+    "horizon_months": 120,
+    "exploratory": true,
+    "transition_onset_month": 24,
+    "transition_duration_months": 36,
+    "real_gdp_growth": 0,
+    "real_spending_growth": 0,
+    "other_revenue_growth": 0,
+    "collection_effectiveness": 1,
+    "annual_inflation": 0.05,
+    "bitcoin_real_growth": 0.1,
+    "asset_decline": 0.8
+  },
+  "countries": [
+    {
+      "id": "USA",
+      "name": "United States",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": {
+        "year": 2024,
+        "government_scope": "General government / central, state, local",
+        "compulsory_revenue_pct_gdp": 25.980738292086237,
+        "other_revenue_pct_gdp": 3.8102527388791607,
+        "expenditure_pct_gdp": 37.737588113875,
+        "source_ids": [
+          "world",
+          "fm_revenue",
+          "fm_expenditure",
+          "world_method",
+          "fm_scope",
+          "weo_scope"
+        ],
+        "notes": [
+          "WoRLD taxes plus reported social contributions are a conservative proxy for compulsory revenue. The legal mandatory/voluntary split is not established.",
+          "Revenue reconciliation: WoRLD 29.790991% GDP; Fiscal Monitor 29.879133% GDP. Difference 0.088142 percentage points. No rescaling is applied."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "CHN",
+      "name": "China",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": {
+        "year": 2023,
+        "government_scope": "General government / central, local, social security",
+        "compulsory_revenue_pct_gdp": 22.742612482371364,
+        "other_revenue_pct_gdp": 3.2830594997943585,
+        "expenditure_pct_gdp": 32.733664086142,
+        "source_ids": [
+          "world",
+          "fm_revenue",
+          "fm_expenditure",
+          "world_method",
+          "fm_scope",
+          "weo_scope"
+        ],
+        "notes": [
+          "WoRLD taxes plus reported social contributions are a conservative proxy for compulsory revenue. The legal mandatory/voluntary split is not established.",
+          "Revenue reconciliation: WoRLD 26.025672% GDP; Fiscal Monitor 26.025672% GDP. Difference 0.000000 percentage points. No rescaling is applied.",
+          "The 2023 record reconciles across the sources; the 2024 record differs by 0.228669 percentage points and is queued for review. Fiscal perimeter excludes some broader quasi-fiscal activity."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "EU",
+      "name": "European Union",
+      "kind": "bloc",
+      "members": [
+        "AUT",
+        "BEL",
+        "BGR",
+        "HRV",
+        "CYP",
+        "CZE",
+        "DNK",
+        "EST",
+        "FIN",
+        "FRA",
+        "DEU",
+        "GRC",
+        "HUN",
+        "IRL",
+        "ITA",
+        "LVA",
+        "LTU",
+        "LUX",
+        "MLT",
+        "NLD",
+        "POL",
+        "PRT",
+        "ROU",
+        "SVK",
+        "SVN",
+        "ESP",
+        "SWE"
+      ],
+      "membership_date": "2026-10-09",
+      "baseline": {
+        "year": 2024,
+        "government_scope": "EU27 / member general governments / S13",
+        "compulsory_revenue_pct_gdp": 39.4,
+        "other_revenue_pct_gdp": 6.600000000000001,
+        "expenditure_pct_gdp": 49.1,
+        "source_ids": [
+          "eu",
+          "weo_scope"
+        ],
+        "notes": [
+          "Use Eurostat EU27_2020, not a sum of displayed countries. This is member-state general government, not the separate EU institutional budget.",
+          "The cap includes taxes and actual social contributions; imputed contributions are excluded. Published shares are rounded to 0.1 percentage points."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only.",
+        "The EU institutional budget and cross-border feedback are unmodeled."
+      ]
+    },
+    {
+      "id": "JPN",
+      "name": "Japan",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": {
+        "year": 2023,
+        "government_scope": "Central, local, social security",
+        "compulsory_revenue_pct_gdp": 33.140616353444756,
+        "other_revenue_pct_gdp": 2.2541815542643917,
+        "expenditure_pct_gdp": 37.775305432774,
+        "source_ids": [
+          "world",
+          "fm_revenue",
+          "fm_expenditure",
+          "world_method",
+          "fm_scope",
+          "weo_scope"
+        ],
+        "notes": [
+          "WoRLD taxes plus reported social contributions are a conservative proxy for compulsory revenue. The legal mandatory/voluntary split is not established.",
+          "Revenue reconciliation: WoRLD 35.394798% GDP; Fiscal Monitor 35.380513% GDP. Difference -0.014285 percentage points. No rescaling is applied.",
+          "Latest complete WoRLD social-contribution observation is 2023. Fiscal Monitor labels the aggregate CG but lists central, local, and social-security subsectors; displayed coverage follows those subsectors."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "DEU",
+      "name": "Germany",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": {
+        "year": 2024,
+        "government_scope": "General government / S13",
+        "compulsory_revenue_pct_gdp": 39.7,
+        "other_revenue_pct_gdp": 7.099999999999994,
+        "expenditure_pct_gdp": 49.4,
+        "source_ids": [
+          "de"
+        ],
+        "notes": [
+          "Tax receipts plus actual employer and household social contributions form the compulsory-revenue proxy. Imputed contributions are excluded. Actual voluntary contributions are not separately identified.",
+          "Published shares are rounded to 0.1 percentage points. Revenue categories and expenditures use the same release, year, unit, and government sector."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "GBR",
+      "name": "United Kingdom",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": null,
+      "research_gaps": [
+        "Baseline not accepted: 2023 WoRLD revenue is 38.314% GDP; Fiscal Monitor is 38.149% GDP. Reconcile government scope, GDP vintage, and accounting before combining the tax split with expenditure.",
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "FRA",
+      "name": "France",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": {
+        "year": 2024,
+        "government_scope": "General government / S13",
+        "compulsory_revenue_pct_gdp": 43.4,
+        "other_revenue_pct_gdp": 7.800000000000004,
+        "expenditure_pct_gdp": 57.0,
+        "source_ids": [
+          "fr"
+        ],
+        "notes": [
+          "Tax receipts plus actual employer and household social contributions form the compulsory-revenue proxy. Imputed contributions are excluded. Actual voluntary contributions are not separately identified.",
+          "Published shares are rounded to 0.1 percentage points. Revenue categories and expenditures use the same release, year, unit, and government sector."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "IND",
+      "name": "India",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": null,
+      "research_gaps": [
+        "Baseline not accepted: 2024 WoRLD revenue is 20.900% GDP; Fiscal Monitor is 21.423% GDP. Reconcile government scope, GDP vintage, and accounting before combining the tax split with expenditure.",
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only.",
+        "Fiscal-year reporting must be aligned before importing the baseline."
+      ]
+    },
+    {
+      "id": "BRA",
+      "name": "Brazil",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": {
+        "year": 2024,
+        "government_scope": "General government / central, state, local, social security",
+        "compulsory_revenue_pct_gdp": 33.00391727091024,
+        "other_revenue_pct_gdp": 6.358993588341846,
+        "expenditure_pct_gdp": 45.541544543498,
+        "source_ids": [
+          "world",
+          "fm_revenue",
+          "fm_expenditure",
+          "world_method",
+          "fm_scope",
+          "weo_scope"
+        ],
+        "notes": [
+          "WoRLD taxes plus reported social contributions are a conservative proxy for compulsory revenue. The legal mandatory/voluntary split is not established.",
+          "Revenue reconciliation: WoRLD 39.362911% GDP; Fiscal Monitor 39.369573% GDP. Difference 0.006662 percentage points. No rescaling is applied."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "RUS",
+      "name": "Russia",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": null,
+      "research_gaps": [
+        "Baseline not accepted: 2024 WoRLD revenue is 35.314% GDP; Fiscal Monitor is 35.064% GDP. Reconcile government scope, GDP vintage, and accounting before combining the tax split with expenditure.",
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "SAU",
+      "name": "Saudi Arabia",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": {
+        "year": 2024,
+        "government_scope": "Central government",
+        "compulsory_revenue_pct_gdp": 7.240649700161448,
+        "other_revenue_pct_gdp": 19.52995844594688,
+        "expenditure_pct_gdp": 29.230481036796,
+        "source_ids": [
+          "world",
+          "fm_revenue",
+          "fm_expenditure",
+          "world_method",
+          "fm_scope",
+          "weo_scope"
+        ],
+        "notes": [
+          "WoRLD taxes plus reported social contributions are a conservative proxy for compulsory revenue. The legal mandatory/voluntary split is not established.",
+          "Revenue reconciliation: WoRLD 26.770608% GDP; Fiscal Monitor 26.770620% GDP. Difference 0.000011 percentage points. No rescaling is applied."
+        ]
+      },
+      "research_gaps": [
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "CHE",
+      "name": "Switzerland",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": null,
+      "research_gaps": [
+        "Baseline not accepted: 2023 WoRLD revenue is 32.149% GDP; Fiscal Monitor is 31.058% GDP. Reconcile government scope, GDP vintage, and accounting before combining the tax split with expenditure.",
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "SGP",
+      "name": "Singapore",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": null,
+      "research_gaps": [
+        "Baseline not accepted: 2024 WoRLD revenue is 19.229% GDP; Fiscal Monitor is 18.039% GDP. Reconcile government scope, GDP vintage, and accounting before combining the tax split with expenditure.",
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only.",
+        "Fiscal-year reporting and treatment of investment income need review."
+      ]
+    },
+    {
+      "id": "ARG",
+      "name": "Argentina",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": null,
+      "research_gaps": [
+        "Baseline not accepted: 2024 WoRLD revenue is 29.324% GDP; Fiscal Monitor is 31.477% GDP. Reconcile government scope, GDP vintage, and accounting before combining the tax split with expenditure.",
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    },
+    {
+      "id": "PRY",
+      "name": "Paraguay",
+      "kind": "country",
+      "members": [],
+      "membership_date": null,
+      "baseline": null,
+      "research_gaps": [
+        "Baseline not accepted: 2024 WoRLD revenue is 15.138% GDP; Fiscal Monitor is 18.758% GDP. Reconcile government scope, GDP vintage, and accounting before combining the tax split with expenditure.",
+        "Debt maturity schedules, liquid reserves, asset sales, and payment arrears are unmodeled. The funding gap covers recurring expenditure only."
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "id": "world",
+      "title": "IMF WoRLD / 2026 revenue release",
+      "url": "https://www.imf.org/-/media/files/topics/fiscal/world-revenue-longitudinal-database/world-imf2026.xlsx",
+      "publication_date": "2026",
+      "retrieval_date": "2026-10-09",
+      "sha256": "83da275cb7af790d22893c3d49ec9fc2a2574f71728169b0fa6c45df21ccce55",
+      "notes": "Tax, social-contribution, and total revenue shares. Government coverage varies. This release lacks a per-row scope field."
+    },
+    {
+      "id": "fm_revenue",
+      "title": "IMF Fiscal Monitor / revenue",
+      "url": "https://www.imf.org/external/datamapper/api/v2/GGR_G01_GDP_PT",
+      "publication_date": "2026-04-15",
+      "retrieval_date": "2026-10-09",
+      "sha256": "1963930b9e4c636481c81e06e20448822be5e3a4641240e57f849f4824745323",
+      "notes": "Historical revenue series used to reconcile the revenue perimeter. Source revisions can differ from WoRLD."
+    },
+    {
+      "id": "fm_expenditure",
+      "title": "IMF Fiscal Monitor / expenditure",
+      "url": "https://www.imf.org/external/datamapper/api/v2/G_X_G01_GDP_PT",
+      "publication_date": "2026-04-15",
+      "retrieval_date": "2026-10-09",
+      "sha256": "0348a32d1c4f7b24a5ee484696557754ca8addb610bce58ba681249a19b96666",
+      "notes": "Annual expenditure includes interest and excludes debt-principal refinancing. Coverage is checked against the statistical appendix."
+    },
+    {
+      "id": "eu",
+      "title": "Eurostat / EU27 government accounts",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?lang=EN&geo=EU27_2020&unit=PC_GDP&sector=S13&time=2024",
+      "publication_date": "2026-07-21T11:00:00+0200",
+      "retrieval_date": "2026-10-09",
+      "sha256": "0fb418a217f6c4e7e3ea4c4d5a5b199e08f1b8465dac43f1d7715cfcfafb2cc7",
+      "notes": "Published EU27_2020 aggregate, S13 general government. No member-country summation is performed."
+    },
+    {
+      "id": "fr",
+      "title": "Eurostat / France government accounts",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?lang=EN&geo=FR&unit=PC_GDP&sector=S13&time=2024",
+      "publication_date": "2026-07-21T11:00:00+0200",
+      "retrieval_date": "2026-10-09",
+      "sha256": "713508fe4f30fd9136cbd4010ab0f89ef47847ffa2ab5abef5455e1f18f5ea26",
+      "notes": "S13 general government; taxes plus actual social contributions form the cap proxy."
+    },
+    {
+      "id": "de",
+      "title": "Eurostat / Germany government accounts",
+      "url": "https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/gov_10a_main?lang=EN&geo=DE&unit=PC_GDP&sector=S13&time=2024",
+      "publication_date": "2026-07-21T11:00:00+0200",
+      "retrieval_date": "2026-10-09",
+      "sha256": "afb7818469922918adb5c31855be3c033f4af253a34144523ae5f31e41149240",
+      "notes": "S13 general government; taxes plus actual social contributions form the cap proxy."
+    },
+    {
+      "id": "world_method",
+      "title": "IMF WoRLD methodology",
+      "url": "https://www.imf.org/-/media/files/publications/tnm/2025/english/tnmea2025004.pdf",
+      "publication_date": "2025-02",
+      "retrieval_date": "2026-10-09",
+      "sha256": "1437c9ed8ddf3f92c699ace0443e91dafd95c127cf0b24f81e83dda716462a56",
+      "notes": "Government-unit and accounting definitions. Historical revenue data do not estimate transition revenue elasticity."
+    },
+    {
+      "id": "fm_scope",
+      "title": "IMF Fiscal Monitor / coverage appendix",
+      "url": "https://www.imf.org/-/media/files/publications/fiscal-monitor/2026/april/english/text.pdf",
+      "publication_date": "2026-04",
+      "retrieval_date": "2026-10-09",
+      "sha256": "fab582dbf2d00ff71284204550e2ca882d5c7f081745f8f76c2bda4b6824836f",
+      "notes": "Tables B/C describe subsector coverage. Historical data are baseline references, not forecasts from this model."
+    },
+    {
+      "id": "weo_scope",
+      "title": "IMF WEO / country documentation",
+      "url": "https://data.imf.org/-/media/iData/External-Storage/Documents/4AA1F4D0624C46E98F95988F1F83E770/en/April-2026-WEO-Database-Appendix.pdf",
+      "publication_date": "2026-04",
+      "retrieval_date": "2026-10-09",
+      "sha256": "b8a538c3158bf0553a3ae45d4797cd5648cbea684eb4be848a52c1d64d994395",
+      "notes": "Latest actual fiscal data and country government coverage. Subsector coverage differs between countries."
+    }
+  ],
+  "mechanisms": [
+    {
+      "id": "budget",
+      "name": "Fiscal funding gap",
+      "status": "implemented",
+      "description": "Available resources meet some planned expenditure. The remaining recurring funding need is generated by accounting. This is not a prediction of specific service cuts.",
+      "equation": "R = compulsory revenue + other revenue\nF = max(E - R, 0) * (1 - transition)\nGap = max(E - R - F, 0)\nFunded spending = min(E, R + F)",
+      "inputs": [
+        "spending",
+        "tax",
+        "other",
+        "financing"
+      ],
+      "outputs": [
+        "funding_gap",
+        "funding_gap_pct_gdp",
+        "funded_spending",
+        "sustainable_spending",
+        "refinancing_requirement"
+      ],
+      "source_ids": [
+        "world_method",
+        "fm_scope"
+      ],
+      "research_gaps": [
+        "Debt-principal repayments require maturity schedules. Unknown repayments remain null.",
+        "Surpluses are not accumulated into a reserve stock in this first recurring-flow calculation."
+      ]
+    },
+    {
+      "id": "tax",
+      "name": "Compulsory revenue cap",
+      "status": "implemented",
+      "description": "The starting compulsory-revenue share of GDP is the imposed cap. Collection effectiveness can fall during the transition. Historical receipt shares do not establish a Laffer maximum.",
+      "equation": "C = cap * GDP / 100 * collection\ncollection = 1 - transition * (1 - target effectiveness)",
+      "inputs": [
+        "gdp",
+        "transition"
+      ],
+      "outputs": [
+        "compulsory_revenue"
+      ],
+      "source_ids": [
+        "world",
+        "world_method"
+      ],
+      "research_gaps": [
+        "Estimate collectible revenue under mobility, avoidance, enforcement, and changes in the tax base.",
+        "Review mandatory and voluntary social contributions separately."
+      ]
+    },
+    {
+      "id": "gdp",
+      "name": "Real output",
+      "status": "assumed",
+      "description": "Real GDP growth is an exploratory input. Productive capacity stays at 100. Asset repricing does not change either variable by itself.",
+      "equation": "GDP index = 100 * (1 + real growth)^(month / 12)",
+      "inputs": [],
+      "outputs": [
+        "gdp_index",
+        "productive_capacity_index"
+      ],
+      "source_ids": [],
+      "research_gaps": [
+        "Quantify output dependence on financing, maintenance, institutional support, and coordination."
+      ]
+    },
+    {
+      "id": "spending",
+      "name": "Planned expenditure",
+      "status": "assumed",
+      "description": "Historical expenditure sets the starting scale. A visible real spending-growth input defines commitments. Allocation among services and debt interest is unresolved.",
+      "equation": "E = baseline expenditure * (1 + real spending growth)^(month / 12)",
+      "inputs": [],
+      "outputs": [
+        "planned_spending"
+      ],
+      "source_ids": [
+        "fm_expenditure"
+      ],
+      "research_gaps": [
+        "Model civilian and coercive spending priorities separately."
+      ]
+    },
+    {
+      "id": "other",
+      "name": "Other recurring revenue",
+      "status": "assumed",
+      "description": "Revenue outside the compulsory-revenue proxy includes grants, resource income, and other receipts. Its survival is an exploratory assumption.",
+      "equation": "Other revenue = baseline other revenue * (1 + growth)^(month / 12)",
+      "inputs": [],
+      "outputs": [
+        "other_revenue"
+      ],
+      "source_ids": [
+        "world_method"
+      ],
+      "research_gaps": [
+        "Separate recurring revenue from asset sales, compulsory fees, and grants dependent on other governments."
+      ]
+    },
+    {
+      "id": "transition",
+      "name": "Transition timing",
+      "status": "assumed",
+      "description": "Onset and duration impose the fraction of the transition completed. The same timing withdraws financing coverage and applies the asset-price decline. This timing does not derive one condition from another.",
+      "equation": "transition = clamp((month - onset) / duration, 0, 1)",
+      "inputs": [],
+      "outputs": [
+        "transition"
+      ],
+      "source_ids": [],
+      "research_gaps": [
+        "Establish transition timing and whether financing withdrawal and asset repricing occur together. The initial shared timing is imposed."
+      ]
+    },
+    {
+      "id": "financing",
+      "name": "Financing withdrawal",
+      "status": "implemented",
+      "description": "Financing covers the recurring deficit before transition. Its coverage fraction is imposed by transition timing. The amount covered is calculated from spending and revenue. Private financing remains outside this government channel.",
+      "equation": "Financing = max(E - R, 0) * (1 - transition)",
+      "inputs": [
+        "transition",
+        "spending",
+        "tax",
+        "other"
+      ],
+      "outputs": [
+        "financing"
+      ],
+      "source_ids": [],
+      "research_gaps": [
+        "Determine how borrowing and monetary financing fail, and distinguish them. The initial combined channel does not estimate their separate shares."
+      ]
+    },
+    {
+      "id": "assets",
+      "name": "Real asset repricing",
+      "status": "assumed",
+      "description": "Stocks and gross property prices start at 100 and lose at least 80% of their purchasing-power value. Both follow the imposed transition path. These are price indices, not total returns or owners' equity.",
+      "equation": "Real asset index = 100 * (1 - decline * transition)",
+      "inputs": [
+        "transition",
+        "prices",
+        "bitcoin"
+      ],
+      "outputs": [
+        "stock_real_index",
+        "property_real_index",
+        "stock_dollar_index",
+        "property_dollar_index",
+        "stock_bitcoin_index",
+        "property_bitcoin_index"
+      ],
+      "source_ids": [],
+      "research_gaps": [
+        "Estimate separate asset paths and debt effects. The common path is imposed."
+      ]
+    },
+    {
+      "id": "prices",
+      "name": "Shared purchasing-power index",
+      "status": "assumed",
+      "description": "One fixed measurement basis applies to every country. The simulated index compounds the inflation input. It does not measure national living-cost differences or reproduce ShadowStats.",
+      "equation": "P = 100 * (1 + annual inflation)^(month / 12)\nDollar asset index = real index * P / 100",
+      "inputs": [],
+      "outputs": [
+        "price_index"
+      ],
+      "source_ids": [],
+      "research_gaps": [
+        "Specify a defensible historical inflation series and projection method before treating this path as a forecast."
+      ]
+    },
+    {
+      "id": "bitcoin",
+      "name": "Bitcoin purchasing power",
+      "status": "assumed",
+      "description": "Bitcoin real growth is a comparison assumption. Its dollar index combines that path with the shared inflation index. Absolute Bitcoin prices are not inferred.",
+      "equation": "Bitcoin real index = 100 * (1 + real growth)^(month / 12)\nBitcoin dollar index = Bitcoin real index * P / 100\nAsset Bitcoin index = asset real index * 100 / Bitcoin real index",
+      "inputs": [
+        "prices"
+      ],
+      "outputs": [
+        "bitcoin_real_index",
+        "bitcoin_dollar_index",
+        "bitcoin_bitcoin_index"
+      ],
+      "source_ids": [],
+      "research_gaps": [
+        "Choose and evaluate mechanisms for adoption, bubbles, drawdowns, and volatility."
+      ]
+    },
+    {
+      "id": "services",
+      "name": "Public services",
+      "status": "qualitative",
+      "description": "A recurring funding gap creates allocation pressure. It does not determine which services survive.",
+      "equation": null,
+      "inputs": [
+        "budget"
+      ],
+      "outputs": [],
+      "source_ids": [],
+      "research_gaps": [
+        "Source spending by function and the resources needed for each service."
+      ]
+    },
+    {
+      "id": "policy",
+      "name": "Capital controls and conflict",
+      "status": "qualitative",
+      "description": "Fiscal pressure may affect coercive policy. No event likelihood is calculated.",
+      "equation": null,
+      "inputs": [
+        "budget"
+      ],
+      "outputs": [],
+      "source_ids": [],
+      "research_gaps": [
+        "Research jurisdiction-specific controls, redistribution, and war mechanisms."
+      ]
+    },
+    {
+      "id": "private_finance",
+      "name": "Private institutions",
+      "status": "qualitative",
+      "description": "Private finance and voluntary organization can sustain production and replace services.",
+      "equation": null,
+      "inputs": [
+        "budget"
+      ],
+      "outputs": [],
+      "source_ids": [],
+      "research_gaps": [
+        "Investigate working capital, private credit, ownership transfers, and viable organizational scale."
+      ]
+    },
+    {
+      "id": "technology",
+      "name": "AI and technology",
+      "status": "qualitative",
+      "description": "Technology can change productivity and depend on institutional financing.",
+      "equation": null,
+      "inputs": [
+        "budget"
+      ],
+      "outputs": [],
+      "source_ids": [],
+      "research_gaps": [
+        "Calibrate AI, robotics, energy, and space dependencies without counting effects twice."
+      ]
+    },
+    {
+      "id": "households",
+      "name": "Family life",
+      "status": "qualitative",
+      "description": "Unmet care and income needs can change household arrangements.",
+      "equation": null,
+      "inputs": [
+        "budget"
+      ],
+      "outputs": [],
+      "source_ids": [],
+      "research_gaps": [
+        "Compare family transfers, employers, paid services, and mutual aid."
+      ]
+    },
+    {
+      "id": "demographics",
+      "name": "Demographics",
+      "status": "qualitative",
+      "description": "Fertility, mortality, migration, and community retention determine population composition.",
+      "equation": null,
+      "inputs": [
+        "budget"
+      ],
+      "outputs": [],
+      "source_ids": [],
+      "research_gaps": [
+        "Source age structure, causal delays, and community transmission."
+      ]
+    }
+  ],
+  "variables": [
+    {
+      "id": "funding_gap",
+      "name": "Funding gap",
+      "unit": "Annualized real units; starting annual GDP = 100",
+      "status": "generated",
+      "mechanism_id": "budget"
+    },
+    {
+      "id": "funding_gap_pct_gdp",
+      "name": "Funding gap pct gdp",
+      "unit": "% of scenario GDP",
+      "status": "generated",
+      "mechanism_id": "budget"
+    },
+    {
+      "id": "funded_spending",
+      "name": "Funded spending",
+      "unit": "Annualized real units; starting annual GDP = 100",
+      "status": "generated",
+      "mechanism_id": "budget"
+    },
+    {
+      "id": "sustainable_spending",
+      "name": "Sustainable spending",
+      "unit": "Annualized real units; starting annual GDP = 100",
+      "status": "generated",
+      "mechanism_id": "budget"
+    },
+    {
+      "id": "compulsory_revenue",
+      "name": "Compulsory revenue",
+      "unit": "Annualized real units; starting annual GDP = 100",
+      "status": "generated",
+      "mechanism_id": "tax"
+    },
+    {
+      "id": "gdp_index",
+      "name": "Gdp index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "gdp"
+    },
+    {
+      "id": "productive_capacity_index",
+      "name": "Productive capacity index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "gdp"
+    },
+    {
+      "id": "planned_spending",
+      "name": "Planned spending",
+      "unit": "Annualized real units; starting annual GDP = 100",
+      "status": "assumed",
+      "mechanism_id": "spending"
+    },
+    {
+      "id": "other_revenue",
+      "name": "Other revenue",
+      "unit": "Annualized real units; starting annual GDP = 100",
+      "status": "assumed",
+      "mechanism_id": "other"
+    },
+    {
+      "id": "transition",
+      "name": "Transition",
+      "unit": "fraction completed",
+      "status": "assumed",
+      "mechanism_id": "transition"
+    },
+    {
+      "id": "financing",
+      "name": "Financing",
+      "unit": "Annualized real units; starting annual GDP = 100",
+      "status": "generated",
+      "mechanism_id": "financing"
+    },
+    {
+      "id": "stock_real_index",
+      "name": "Stock real index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "assets"
+    },
+    {
+      "id": "property_real_index",
+      "name": "Property real index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "assets"
+    },
+    {
+      "id": "stock_dollar_index",
+      "name": "Stock dollar index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "assets"
+    },
+    {
+      "id": "property_dollar_index",
+      "name": "Property dollar index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "assets"
+    },
+    {
+      "id": "stock_bitcoin_index",
+      "name": "Stock bitcoin index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "assets"
+    },
+    {
+      "id": "property_bitcoin_index",
+      "name": "Property bitcoin index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "assets"
+    },
+    {
+      "id": "price_index",
+      "name": "Price index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "prices"
+    },
+    {
+      "id": "bitcoin_real_index",
+      "name": "Bitcoin real index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "bitcoin"
+    },
+    {
+      "id": "bitcoin_dollar_index",
+      "name": "Bitcoin dollar index",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "bitcoin"
+    },
+    {
+      "id": "refinancing_requirement",
+      "name": "Debt refinancing requirement",
+      "unit": "Annualized real units; starting annual GDP = 100; unknown",
+      "status": "generated",
+      "mechanism_id": "budget"
+    },
+    {
+      "id": "bitcoin_bitcoin_index",
+      "name": "Bitcoin measured in Bitcoin",
+      "unit": "Index; starting value = 100",
+      "status": "assumed",
+      "mechanism_id": "bitcoin"
+    }
+  ],
+  "limitations": [
+    "These are uncalibrated conditional calculations. No real-world probabilities are assigned.",
+    "Historical fiscal shares are applied at the forecast origin without a 2024-to-2026 nowcast. Different source years limit country comparisons.",
+    "The revenue cap is stipulated. It is not an estimated Laffer maximum.",
+    "Unknown debt maturities, reserves, temporary asset sales, and arrears are excluded from the recurring-flow chart and explicitly unmodeled.",
+    "Country government coverage differs. Central-government views exclude subnational institutions.",
+    "No automatic link connects asset-price collapse to output, tax receipts, or institutional failure.",
+    "Inflation and Bitcoin paths are imposed. Currency displays are indexed comparisons, not absolute exchange rates."
+  ]
+}

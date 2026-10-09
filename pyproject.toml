@@ -1,0 +1,17 @@
+[project]
+name = "future-worldmodel"
+version = "0.1.0"
+description = "An inspectable monetary transition scenario model"
+requires-python = ">=3.13,<3.14"
+dependencies = ["fastapi>=0.115,<1", "uvicorn>=0.30,<1", "pydantic>=2.10,<3", "openpyxl>=3.1,<4"]
+
+[dependency-groups]
+dev = ["pytest>=8,<10", "httpx2>=2,<3"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+tmp_path_retention_count = 1000000
+tmp_path_retention_policy = "all"
+
+[tool.uv]
+package = false

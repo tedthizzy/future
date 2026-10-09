@@ -10,11 +10,60 @@ The project has three views of one underlying model:
 
 The interface is a visual-first scenario explorer. The written argument belongs in the underlying research and optional detail views.
 
+## Run locally
+
+Requires Python 3.13, uv, and Node 22.12 or newer. The model runs directly from this checkout. It does not require an editable package install.
+
+```sh
+uv sync --locked
+npm ci --prefix apps/web
+uv run python -m worldmodel dev
+```
+
+Open http://127.0.0.1:5173/ and select **Explore starting scenario**. The Python API binds to 127.0.0.1:8000. Changing assumptions calculates and records a new run. Ctrl+C stops the processes started by the dev command. Existing port owners produce an explicit error.
+
+The starting scenario is exploratory. It assumes transition onset after two years, a three-year duration, constant real GDP and planned spending, constant other real revenue, full collection at the cap, 5% shared annual inflation, 10% annual Bitcoin purchasing-power growth, and an 80% real asset-price decline. These values demonstrate relationships. They have no assigned probability.
+
+Saved scenarios stay in this browser's local storage. Save each variation under a new name. **Inputs JSON** preserves a portable copy. CSV and Excel export current and compared runs, complete monthly trajectories, units, assumed/generated status, source references, research gaps, and provenance. Fiscal flows are annualized even though the model samples them monthly.
+
+Runs stay outside the public repository at `~/.local/share/future/runs/<run-id>/`. Each directory preserves its scenario, definitions, and results. `FUTURE_STATE_DIR` selects a different private location, including an isolated directory for tests. The engine does not fetch data or call an LLM while running.
+
+The CLI uses the same engine:
+
+```sh
+uv run python -m worldmodel run scenarios/exploratory.json
+uv run python -m worldmodel export <run-id> --format csv --output /tmp/future-export.csv
+```
+
+Exports refuse to overwrite an existing file. Keep personal scenarios and outputs outside this public checkout.
+
+## First release
+
+The implemented model generates recurring fiscal funding gaps. It does not allocate service cuts or estimate policy-event probabilities. GDP and Bitcoin paths are imposed inputs. Stock and gross property prices share the imposed repricing path. Productive capacity remains separate.
+
+The explorer includes 14 countries and an EU aggregate. Eight fiscal baselines have been accepted: United States, China, Japan, Germany, France, Brazil, Saudi Arabia, and EU27. United Kingdom, India, Russia, Switzerland, Singapore, Argentina, and Paraguay remain visible with unresolved source reconciliation. Their fiscal results stay null. Their imposed asset paths remain available.
+
+The shared purchasing-power index starts at 100 and compounds an inflation input. Its measurement basis stays fixed across countries. It is a simulated denominator, not a measured universal CPI or a replication of ShadowStats. Dollar and Bitcoin displays are indices; they do not infer absolute prices.
+
+The forecast origin is October 2026. Historical fiscal shares set the starting scale without a nowcast. Source years and government coverage remain visible. The EU view uses the published Eurostat aggregate, includes member general governments, and stays separate from member-country views.
+
+The compulsory-revenue cap uses taxes plus a reported social-contribution proxy. It is a stipulated ceiling, not an estimated Laffer maximum. Dataset coverage does not establish every contribution's legal mandatory/voluntary classification. Debt maturities, reserves, asset sales, and arrears remain explicit gaps. See [the calculation and source review](research/model.md).
+
+## Check the implementation
+
+```sh
+uv run python -m pytest -q
+npm run types --prefix apps/web
+npm run build --prefix apps/web
+```
+
+Pydantic defines the contracts. The `types` command regenerates TypeScript from their JSON Schema. Tests check accounting, units, input validation, reproducibility, source coverage, immutable runs, and export agreement. They do not measure predictive performance. Browser interaction and screenshot checks are separate from these commands.
+
 The model should inform financial allocations, career paths, location selections, cultural priorities, and skillsets to acquire. It should also help identify trends to pursue or avoid. Forecasts of future morality describe changing norms; personal moral judgments remain separate inputs to decisions.
 
 ## Assumptions and Causal Trajectory v0.1
 
-This draft records the supplied scenario. It leaves unresolved quantities explicit. It does not select equations, estimate parameters, or produce forecasts.
+This document records the supplied scenario and the first implementation. Unresolved mechanisms remain explicit. The engine generates conditional accounting results from reviewed baselines and exploratory inputs.
 
 > Under the monetary transition stipulated here, how do productive activity, state power, private institutions, family life, and demographics change, and over what timescales?
 
@@ -25,8 +74,8 @@ Bitcoin's eventual success is an input. The model investigates its downstream co
 - **Bitcoin:** Bitcoin displaces fiat and becomes the dominant monetary store of value. The scope of its use in payments and contracts remains to be defined.
 - **Central banking:** Central banks cease to operate. Governments cannot restore their spending capacity through money creation or debt monetization.
 - **Sovereign borrowing:** Sovereign bond markets collapse. Governments cannot fund spending or refinance debt through reliable voluntary borrowing. The treatment of other public borrowing remains unresolved.
-- **Taxation:** Governments cannot compensate by increasing taxes. Whether this limits statutory tax rates, real revenue, or revenue relative to output remains unresolved.
-- **Asset prices:** Stocks and real estate decline by at least 80%. The measurement unit, reference point, geographic scope, and timing remain unresolved.
+- **Taxation:** Collected compulsory revenue cannot exceed its starting share of GDP. Collection effectiveness may fall. Statutory rates and a behavioral Laffer curve remain unmodeled.
+- **Asset prices:** Stock-price and gross property-price indices lose at least 80% of real purchasing-power value from the scenario starting level of 100. Onset and duration are explicit inputs. The path applies to the selected countries.
 - **Productive capacity:** Existing productive assets largely survive. Actual output can fall when financing, maintenance, institutional support, or coordination fails.
 
 Bitcoin dominance, sovereign bond-market collapse, and the asset-price decline are separate imposed conditions. This draft does not claim that Bitcoin dominance alone establishes the other conditions.
@@ -35,15 +84,15 @@ Private borrowing, equity financing, retained earnings, and voluntary large-scal
 
 ### Quantities and timescales
 
-Every financial quantity needs a unit and a reference date. Track nominal dollars, Bitcoin, and real purchasing power separately. Real purchasing power means command over a specified basket of goods and services in a specified location. That basket remains to be selected.
+Every financial quantity needs a unit and a reference date. Track nominal dollars, Bitcoin, and real purchasing power separately. The first implementation represents purchasing power with one shared simulated index. Its basis stays fixed while its price level changes. It does not estimate local living-cost differences.
 
-The 80% decline needs an asset definition as well as a unit. Specify whether stocks mean an index, individual companies, or aggregate market value. Specify whether real estate means property prices or owners' equity after debt. Specify whether the reference point is a peak or a forecast-origin value. Price declines and total returns need separate treatment.
+The initial asset paths describe stock-price indices and gross property-price indices. The reference point is the forecast-origin value. Individual companies, owners' equity after debt, and total returns require separate mechanisms.
 
 Asset prices are the exchange values of claims or properties. Productive capacity is the ability to produce goods and services with existing assets and skills. Actual output is production over a defined period. An 80% price decline does not impose an 80% decline in productive capacity or actual output. Gross asset values and debt determine owners' net wealth separately.
 
 Government financing capacity means resources available to fund spending over a period. State power includes the ability to enforce laws and control territory. A financing constraint can alter how governments allocate resources. The model must calculate what happens to coercive functions separately from civilian services.
 
-The main decision horizon is the next 10 years from a versioned forecast origin. The origin remains to be selected. Transition timing is a separate input. The scenario does not yet require the full transition to occur within those 10 years.
+The main decision horizon is the next 10 years from a versioned forecast origin. The initial origin is October 2026. Transition timing is a separate input. The scenario does not yet require the full transition to occur within those 10 years.
 
 Family formation and demographic composition require additional timescales. Track births, deaths, migration, and changes in community membership. Track age structure and transmission to the next generation. Outcomes over generations must remain separate from outcomes within the 10-year horizon. All causal delays remain uncalibrated.
 
@@ -138,7 +187,7 @@ Use legible sans-serif text. Body text and placeholders must reach 4.5:1 contras
 
 Use a Python simulation engine and a React/TypeScript frontend with Vite in this repository. Organize implemented mechanisms as independently testable Python modules in one codebase. This is the modular monolith described in the architecture suggestion.
 
-Run the simulation from the command line. The website reads immutable static result files. Start with JSON results and generate CSV/Excel exports from the same values. React owns the SVG elements; selected D3 utilities can supply scales and shapes. [Vite production builds](https://vite.dev/guide/build), [D3 and React](https://d3js.org/what-is-d3)
+Run the simulation from the command line or the local FastAPI control surface. The website requests calculations through the same engine. Store immutable JSON results and generate CSV/Excel exports from those recorded values. React owns the SVG elements; selected D3 utilities can supply scales and shapes. [Vite production builds](https://vite.dev/guide/build), [D3 and React](https://d3js.org/what-is-d3)
 
 Define the canonical data contract in Python with Pydantic. Generate JSON Schema and frontend types from that contract. Python performs authoritative validation. Evidence relationships record support or challenges to a claim. Computational dependencies record implemented calculations. An evidence relationship becomes executable only after its mechanism and parameters have been established. [Pydantic JSON Schema](https://docs.pydantic.dev/latest/concepts/json_schema/)
 
@@ -150,17 +199,17 @@ Keep one direct execution path per operation. Missing required inputs produce an
 
 The first implementation should connect one reviewed mechanism to a saved scenario, a reproducible run, an inspectable chart, and a matching export. Check numerical invariants and reproduction separately from predictive performance.
 
-Potential future additions include Parquet storage and DuckDB analysis for larger results, FastAPI with a separate worker for UI-requested runs, and EMA Workbench for sensitivity analysis. Hosting can use the Mac mini or a selected static host. These options do not require scaffolding now.
+Potential future additions include Parquet storage and DuckDB analysis for larger results, a separate worker for expensive calculations, and EMA Workbench for sensitivity analysis. Hosting can use the Mac mini or a selected static host. These options do not require scaffolding now.
 
 ### Research queue
 
-- Define the asset-price unit and reference point. Define the stock and real-estate measures and their geographic scope.
-- Define the tax constraint. Determine how to estimate collectible revenue under mobility, avoidance, enforcement, and changes in the tax base.
+- Calibrate separate stock and property paths, debt effects, total returns, and regional differences. The initial shared real-price decline is imposed.
+- Estimate collectible revenue under mobility, avoidance, enforcement, and changes in the tax base. Review mandatory and voluntary contributions separately. The initial revenue/GDP ceiling is imposed.
 - Define the scope of the public-borrowing ban, central-bank disappearance, and Bitcoin use in payments. Determine transition timing and overlap between monetary systems.
-- Establish government financing accounts and spending priorities by jurisdiction. Quantify the dependencies of civilian services and coercive functions. Fiscal-accounting sources remain unreviewed; two attempted IMF page retrievals failed.
+- Establish government financing accounts and spending priorities by jurisdiction. Quantify the dependencies of civilian services and coercive functions. IMF and Eurostat records have been reviewed for the first release. Seven country baselines still need reconciliation; the exact conflicting totals are recorded in the registry.
 - Investigate how private financing can sustain working capital and capital-intensive production after sovereign debt markets fail.
 - Investigate whether replacement care and security arrangements change household formation, fertility, and community retention. Separate evidence for each connection.
 - Establish regional mechanisms and source data for capital controls, redistribution pressures, and war exposure. Preserve the distinction between a generated event and an imposed shock.
 - Obtain the referenced Bitcoin and inflation methods. Determine how AI progress and organizational capacity affect one another without counting the same effect twice.
 
-No causal magnitude, transition date, or event probability has been calibrated in v0.1.
+No transition timing, behavioral causal magnitude, or event probability has been calibrated in v0.1. Historical fiscal observations establish the initial scale.
