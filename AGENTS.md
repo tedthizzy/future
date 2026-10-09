@@ -16,5 +16,7 @@
 - Preserve resolved inputs and provenance with every immutable run. Generate charts and exports from the same recorded results.
 - Evaluate personal decisions after calculating world trajectories. Keep preferences separate from predictions.
 - Keep scenario ranges distinct from probabilities. Do not use zero-shot LLM scores as measurements.
-- Keep the interface a minimal adaptation of the visual reference in readme.md. Use color consistently and provide reduced-motion alternatives for animation.
+- Keep the interface a minimal adaptation of the visual references in readme.md. Use color consistently and provide reduced-motion alternatives for animation.
+- Keep the main screen visual-first. Use one dominant visualization and compact scenario controls. Keep units, dates, uncertainty, and assumed or generated status visible.
+- Show relevant causes and assumptions when an outcome is selected. Reveal detailed explanations, equations, and research gaps on further selection. Keep the dissertation in optional research views.
 - Keep credentials and private account data outside Git. Check secret files by presence only.

@@ -8,6 +8,8 @@ The project has three views of one underlying model:
 - An interactive visualization that traces outcomes through their causes and evidence.
 - A simulation that generates conditional forecasts from explicit relationships.
 
+The interface is a visual-first scenario explorer. The written argument belongs in the underlying research and optional detail views.
+
 The model should inform financial allocations, career paths, location selections, cultural priorities, and skillsets to acquire. It should also help identify trends to pursue or avoid. Forecasts of future morality describe changing norms; personal moral judgments remain separate inputs to decisions.
 
 ## Assumptions and Causal Trajectory v0.1
@@ -110,7 +112,25 @@ Use an ultra-simplified, minimal adaptation of [The Globe of Economic Complexity
 
 Use a black canvas (`#000000`) with light primary text (`#E0E0E0`) and gray secondary text (`#808080`). Reserve cyan (`#17becf`) and yellow (`#FFC41C`) for meaningful data distinctions. These colors appear in the reference's [stylesheet](http://globe.cid.harvard.edu/style.css) and [visualization source](http://globe.cid.harvard.edu/scripts/script.js).
 
-Keep one main visualization visible at a time, with a small set of controls and details on selection. Use consistent colors for the same variable across views. Choose chart types from the question being explained. Geography belongs in views where location affects an outcome. A 3D globe and particle animation are not required.
+The default view has one dominant visualization and a compact scenario selector. Add one or two supporting views when they help explain the result. Use short labels and annotations. Keep units, dates, uncertainty, and whether a result is assumed or generated visible.
+
+Selecting an outcome reveals its relevant intermediate steps and assumptions beside the visualization. Show the causal relationships needed to explain that outcome. The complete model graph stays outside the default view.
+
+Selecting a mechanism or assumption reveals its definition, evidence, uncertainty, and research gaps. Longer explanations and equations belong here. For example, selecting a projected Bitcoin drawdown exposes its responsible assumptions and calculations.
+
+Keep the dissertation in the underlying research and optional detail views. Avoid an introductory essay, a grid of metric cards, dozens of simultaneous controls, and paragraphs that repeat a chart. Inspecting a result must not require reading the monetary thesis first.
+
+Assign color consistently to scenarios or variables. Keep each color's meaning clear within a view and preserve its assignment across views. Choose chart types from the question being explained. Geography belongs in views where location affects an outcome. A 3D globe and particle animation are not required.
+
+Borrow these interaction patterns while keeping the minimal dark color scheme:
+
+- [Seeing Theory](https://seeing-theory.brown.edu/basic-probability/index.html): focused visual experiments where changing an input demonstrates one relationship.
+- [AI Futures Model](https://www.aifuturesmodel.com/): connections between forecasts, parameters, and an inspectable model diagram. Its [model overview](https://blog.aifutures.org/p/ai-futures-model-dec-2025-update) explains those connections.
+- [En-ROADS](https://en-roads.climateinteractive.org/scenario.html?v=26.9.0): outputs beside scenario controls, with detailed settings available on selection. Its [tutorial](https://docs.climateinteractive.org/projects/en-roads/en/latest/guide/tutorial.html) documents this interaction.
+- [AI 2027](https://ai-2027.com/): progression through time, concrete milestones, and alternative trajectories.
+- [Probable Futures](https://probablefutures.org/maps): geographic exploration of consequences across scenarios. Its [maps explanation](https://probablefutures.org/science/our-maps/) describes how to interpret the results.
+
+These are interface references. Numerical assumptions and forecasts follow the evidence requirements above.
 
 Use legible sans-serif text. Body text and placeholders must reach 4.5:1 contrast. Large text must reach 3:1. Transitions must preserve the identity of the data and provide a reduced-motion alternative. Verify the rendered interface when it exists.
 
