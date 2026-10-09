@@ -1,0 +1,20 @@
+# Project instructions
+
+- Preserve the stipulated core scenario. Treat downstream institutional and social outcomes as questions for the model.
+- Keep imposed inputs distinct from generated outcomes. Audit unexpected results against mechanisms and evidence before changing the model.
+- Keep asset prices, productive capacity, and actual output separate. Give every numerical variable explicit units, a time basis, and geographic scope.
+- Record evidence for each causal mechanism. Keep source support separate from executable computational dependencies.
+- Leave uncalibrated effects explicit. Label exploratory assumptions and require their deliberate selection before numerical execution.
+- Reject missing required inputs. Do not substitute zero, invent a parameter, or add a hidden default.
+- Use one direct code path per operation. Avoid fallbacks and speculative compatibility layers.
+- Implement only what the current requirement needs. Skip speculative modules, dependencies, and abstractions. Record useful future additions in readme.md.
+- Remove unused code only within the authorized scope. Preserve data, evidence, run artifacts, and logs.
+- Keep model calculations in Python. Keep React/TypeScript responsible for displaying results and collecting inputs.
+- Define shared records once in Python. Generate frontend definitions from the canonical schema.
+- Pass inputs explicitly to model calculations. Keep live data collection and LLM calls outside simulation execution.
+- Declare time resolution and feedback timing. Do not let module execution order silently determine causality.
+- Preserve resolved inputs and provenance with every immutable run. Generate charts and exports from the same recorded results.
+- Evaluate personal decisions after calculating world trajectories. Keep preferences separate from predictions.
+- Keep scenario ranges distinct from probabilities. Do not use zero-shot LLM scores as measurements.
+- Keep the interface a minimal adaptation of the visual reference in readme.md. Use color consistently and provide reduced-motion alternatives for animation.
+- Keep credentials and private account data outside Git. Check secret files by presence only.
