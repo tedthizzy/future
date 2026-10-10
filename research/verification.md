@@ -1,5 +1,33 @@
 # Verification / 2026-10-09
 
+## Interface revision
+
+The starting scenario opens automatically. Edits calculate a new run and compare it with the starting scenario. Three relevant inputs stay below the chart. Remaining inputs, saved scenarios, evidence, and equations open on selection. The default screen's rendered text decreased from 291 to 100 words.
+
+Changed files: `apps/web/src/App.tsx`, `apps/web/src/style.css`, `worldmodel/api.py`, `readme.md`, and `research/verification.md`.
+
+- `uv run python -m pytest -q -p no:cacheprovider`: `24 passed in 5.95s`.
+- `npm run build --prefix apps/web`: TypeScript passed; Vite reported `228 modules transformed` and `built in 184ms`.
+- `git diff --check`: no whitespace errors.
+- Browser CSV and Excel downloads matched all 3,630 monthly rows for two runs. Inputs JSON matched the recorded scenario. Excel retained the previous 1e-13 relative or 1e-12 absolute tolerance.
+- A compressed calculation response transferred 156,687 bytes for 1,357,790 decoded bytes. The browser still received all 15 country/bloc trajectories with 121 monthly points each.
+
+Completed browser interactions covered automatic comparison, comparison-specific assumptions, dialog focus and dismissal, saved scenarios, asset units, country data gaps, and widths from 320 to 1,280 pixels. Touch events changed the selected date without opening an inspector or requesting another calculation. Reduced-motion emulation returned `0s` transitions.
+
+Failure checks covered definitions errors, offline edits, recovery with 160 KB/s throughput and 200 ms latency, evidence-version rejection, reordered scenario fields, and malformed saved scenarios. Recovery preserved edited inputs. Malformed storage preserved the original bytes and disabled saving while leaving the reviewed starting scenario available. Export buttons stayed disabled while results were stale or comparison was incomplete.
+
+Boundary checks loaded 1,002 saved scenarios, including names longer than 100 characters with Arabic, CJK, and emoji. Valid growth inputs up to 100% remained editable. A one-month duration displayed `1 month`. Large indices used compact axis labels without horizontal overflow. A positive dollar index of approximately 0.0195 displayed `0.02`, preserving its nonzero value.
+
+Desktop, phone overview, assumptions, and inspector screenshots were rendered and viewed. The checked overview text had a minimum contrast of 5.31:1. Inspector, assumptions, and placeholder text had a minimum of 8.03:1. The completed interaction checks recorded no uncaught JavaScript exceptions. Physical iPhone Safari remains unverified.
+
+Evidence is preserved outside Git under `.cache/browser-redesign/`. Interaction records are in `interactions-2026-10-10T01-24-25.081Z/`; failure checks are in `failures-2026-10-10T02-17-28.521Z/`; final rendering, contrast, and touch checks are in `visual-2026-10-10T02-35-34.853Z/`; boundary checks are in `bounds-2026-10-10T02-34-56.275Z/`. `export-agreement.json` records download agreement. `compression.json` records response sizes. Earlier unsuccessful check attempts and snapshots remain preserved. These filenames use UTC; these checks ran on October 9 in Pacific time.
+
+The revision changes exploration and response compression. Reviewed source updates still require deliberate review. Model calibration and the unimplemented domains remain research work.
+
+## Previous v0.1 checks
+
+The following record describes the implementation before this interface revision.
+
 The v0.1 engine, API, interface, and exports passed the checks below. Desktop rendering and mobile touch emulation were inspected in an already-running Chrome browser. Physical iPhone Safari remains unverified.
 
 - `uv run python -m pytest -q`: `24 passed in 5.98s`.

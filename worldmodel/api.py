@@ -4,11 +4,13 @@ from typing import Literal
 
 from fastapi import FastAPI, Header, HTTPException
 from fastapi.responses import Response
+from starlette.middleware.gzip import GZipMiddleware
 
 from .contracts import Definitions, Run, Scenario
 from .storage import RegistryChanged, canonical, export_run, load_definitions, load_run, record_run, sha
 
 app = FastAPI(title="future", version="0.1.0")
+app.add_middleware(GZipMiddleware, minimum_size=1000, compresslevel=6)
 
 
 @app.get("/api/definitions", response_model=Definitions)

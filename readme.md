@@ -20,9 +20,9 @@ npm ci --prefix apps/web
 uv run python -m worldmodel dev
 ```
 
-Open http://127.0.0.1:5173/ and select **Explore starting scenario**. The Python API binds to 127.0.0.1:8000. Changing assumptions calculates and records a new run. Ctrl+C stops the processes started by the dev command. Existing port owners produce an explicit error.
+Open http://127.0.0.1:5173/. The reviewed exploratory starting scenario loads automatically. Changing assumptions calculates and records a new run, with an automatic comparison against the starting scenario. The Python API binds to 127.0.0.1:8000. Ctrl+C stops the processes started by the dev command. Existing port owners produce an explicit error.
 
-Private phone access uses [Tailscale Serve](ops/hosting.md). On this tailnet, open https://macbook-air-7.taild8ef36.ts.net/. Mobile inputs open from the chart in a compact bottom panel. Touch scrubbing selects a month without changing the simulation. The detached server continues after the agent session. Automatic startup at login remains pending.
+Private phone access uses [Tailscale Serve](ops/hosting.md). On this tailnet, open https://macbook-air-7.taild8ef36.ts.net/. Three relevant controls sit below the chart. **Assumptions** opens the remaining inputs and saved scenarios. Select a result to inspect its causes; expand details for equations, evidence, and research gaps. Touch scrubbing selects a month without changing the simulation. The detached server continues after the agent session. Automatic startup at login remains pending.
 
 The starting scenario is exploratory. It assumes transition onset after two years, a three-year duration, constant real GDP and planned spending, constant other real revenue, full collection at the cap, 5% shared annual inflation, 10% annual Bitcoin purchasing-power growth, and an 80% real asset-price decline. These values demonstrate relationships. They have no assigned probability.
 
